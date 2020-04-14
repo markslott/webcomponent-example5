@@ -1,0 +1,26 @@
+<div>
+    <span class="title">{{title}}</span>
+    <button name="Refresh" class="refreshbutton" (click)="refresh()">
+        Refresh
+    </button>
+    <table class="datatable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Website</th>
+                <th>Amount</th>
+                <th>Phone</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let row of data">
+                <td>{{row.name}}</td>
+                <td>{{row.email}}</td>
+                <td>{{row.website}}</td>
+                <td>{{row.amount}}</td>
+                <td>{{row.phone}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
