@@ -1,5 +1,6 @@
-import { Component, OnInit, Input, ViewEncapsulation, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, Output, ViewEncapsulation, ElementRef, EventEmitter } from '@angular/core';
 import fetchDataHelper from './fetchDataHelper.js';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-contacts',
@@ -26,14 +27,18 @@ export class ContactsComponent implements OnInit {
     this.getData();
   }
 
+  @Output() contactrowclicked = new EventEmitter();
+
   rowClicked(event) {
-    this.eleRef.nativeElement.dispatchEvent(
+    /*this.eleRef.nativeElement.dispatchEvent(
         new CustomEvent('contactrowclicked', {
             detail: event.target.innerHTML,
             bubbles: true,
             composed: true
         })
-    );
+    );*/
+
+    this.contactrowclicked.emit(event.target.innerHTML);
 }
 
   async getData() {
