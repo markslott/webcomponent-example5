@@ -8,7 +8,18 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
-  <my-contacts title="My Contacts"></my-contacts>
+  <my-contacts id="mycontacts" title="My Angular Contacts"></my-contacts>
   <app-root style="display:none"></app-root>
+  <script>
+    var mycontacts = document.getElementById('mycontacts');
+    mycontacts.addEventListener(
+        'contactrowclicked',
+        function (e) {
+            e.preventDefault();
+            console.log(e.detail);
+        },
+        false
+    );
+</script>
 </body>
 </html>

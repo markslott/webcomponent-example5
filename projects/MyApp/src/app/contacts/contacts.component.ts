@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, Input, ViewEncapsulation, ElementRef } from '@angular/core';
 import fetchDataHelper from './fetchDataHelper.js';
 
 @Component({
@@ -12,7 +12,7 @@ export class ContactsComponent implements OnInit {
   _title: string
   data: Array<Object>
 
-  constructor() { }
+  constructor(private eleRef: ElementRef) { }
 
   @Input()
   set title(title: string) {
@@ -25,6 +25,16 @@ export class ContactsComponent implements OnInit {
   refresh() {
     this.getData();
   }
+
+  rowClicked(event) {
+    this.eleRef.nativeElement.dispatchEvent(
+        new CustomEvent('contactrowclicked', {
+            detail: event.target.innerHTML,
+            bubbles: true,
+            composed: true
+        })
+    );
+}
 
   async getData() {
     const data = await fetchDataHelper({ amountOfRecords: 10 });
